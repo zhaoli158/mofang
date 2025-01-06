@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="一个帮助你学习魔方还原的在线工具">
+    <meta name="keywords" content="魔方,还原,教程,3D,在线工具">
+    <title>魔方还原助手</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+    <div id="loading">
+        <div class="spinner"></div>
+        <p>加载中...</p>
+    </div>
+    <div id="bg-animation"></div>
+    
+    <div class="container">
+        <h1>魔方还原助手</h1>
+        <h2 class="subtitle">助您早日成为魔方大师</h2>
+        <p class="author-info">作者微信：zhaoliyanyu</p>
+        
+        <div class="cube-faces">
+            <div class="face-upload" id="face1">
+                <h3>上面</h3>
+                <input type="file" accept="image/*" capture="environment" class="file-input">
+                <div class="preview"></div>
+            </div>
+            <div class="face-upload" id="face2">
+                <h3>前面</h3>
+                <input type="file" accept="image/*" capture="environment" class="file-input">
+                <div class="preview"></div>
+            </div>
+            <!-- 其他四个面的上传区域 -->
+            <div class="face-upload" id="face3">
+                <h3>右面</h3>
+                <input type="file" accept="image/*" capture="environment" class="file-input">
+                <div class="preview"></div>
+            </div>
+            <div class="face-upload" id="face4">
+                <h3>后面</h3>
+                <input type="file" accept="image/*" capture="environment" class="file-input">
+                <div class="preview"></div>
+            </div>
+            <div class="face-upload" id="face5">
+                <h3>左面</h3>
+                <input type="file" accept="image/*" capture="environment" class="file-input">
+                <div class="preview"></div>
+            </div>
+            <div class="face-upload" id="face6">
+                <h3>下面</h3>
+                <input type="file" accept="image/*" capture="environment" class="file-input">
+                <div class="preview"></div>
+            </div>
+        </div>
+
+        <button id="analyze" class="analyze-btn" disabled>分析并获取还原步骤</button>
+
+        <div class="steps-container">
+            <h2>还原步骤</h2>
+            <div class="animation-container">
+                <canvas id="solution-animation"></canvas>
+                <div class="camera-controls">
+                    <button class="control-btn" id="camera-left" title="向左旋转">左转</button>
+                    <button class="control-btn" id="camera-right" title="向右旋转">右转</button>
+                    <button class="control-btn" id="camera-up" title="向上旋转">上转</button>
+                    <button class="control-btn" id="camera-down" title="向下旋转">下转</button>
+                    <button class="control-btn" id="camera-reset">重置视角</button>
+                </div>
+            </div>
+            <div class="animation-controls">
+                <div class="playback-controls">
+                    <button class="control-btn" id="play-pause">
+                        <span class="play-icon">▶</span>
+                        <span class="pause-icon" style="display:none">⏸</span>
+                    </button>
+                    <button class="control-btn" id="restart">⟲</button>
+                </div>
+                <div class="speed-control">
+                    <label>动画速度:</label>
+                    <input type="range" id="speed-slider" min="0.5" max="2" step="0.1" value="1">
+                    <span id="speed-value">1x</span>
+                </div>
+            </div>
+            <div class="step-description">
+                <h3>当前步骤说明</h3>
+                <p id="current-step-description"></p>
+            </div>
+            <div id="steps" class="steps"></div>
+        </div>
+    </div>
+    <script src="background.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
